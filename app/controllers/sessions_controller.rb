@@ -1,12 +1,20 @@
 class SessionsController < ApplicationController
   
   def create
-    session[:name] = params[:name]
-    if !session[:name]
-      render :new
-    else
-      redirect_to '/'
+
+    if params[:name] == ""
+      # binding.pry
+    redirect_to "/login"
+    
+    elsif params[:name] == nil
+      redirect_to "/login"
+
+    elsif params[:name]
+        session[:name] = params[:name]
+        redirect_to '/'
+    
     end
+    
   end
 
   def destroy
